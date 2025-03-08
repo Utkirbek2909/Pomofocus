@@ -5,15 +5,18 @@ import { useState } from 'react'
 
 export default function Home() {
   const [mode, setMode] = useState("Pomodoro")
-  const colorTheme = JSON.parse(localStorage.getItem('colorThemes'));
+const defaultColors = ["rgb(186,73,73)", "rgb(56,133,138)", "rgb(57,112,151)"];
+  const colorTheme = JSON.parse(localStorage.getItem('colorThemes')) || defaultColors;
+  
+  console.log(defaultColors[0]);
   
   const bgColor = () => {
     if(mode === "Pomodoro"){
-      return colorTheme[0];
+      return colorTheme[0] || defaultColors[0];
     }else if(mode === "Short break"){
-      return colorTheme[1];
+      return colorTheme[1] || defaultColors[1];
     }else if(mode === "Long break"){
-      return colorTheme[2];
+      return colorTheme[2] || defaultColors[2];
     }
   }
 

@@ -8,9 +8,9 @@ import { MdSettings } from 'react-icons/md';
 const defaultColors = ["rgb(186,73,73)", "rgb(56,133,138)", "rgb(57,112,151)"];
 
 export default function Header() {
-  const pomodoroTimeNew = localStorage.getItem('pomodoroTime');
-  const shortBreakNew = localStorage.getItem('shortBreak');
-  const longBreakNew = localStorage.getItem('longBreak');
+  const pomodoroTimeNew = localStorage.getItem('pomodoroTime') || 25;
+  const shortBreakNew = localStorage.getItem('shortBreak') || 5;
+  const longBreakNew = localStorage.getItem('longBreak') || 15;
   const storedColors = JSON.parse(localStorage.getItem('colorThemes')) || defaultColors;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,6 @@ export default function Header() {
     setIsOpen(false);
   };
   
-
   const handleColorSelect = (index, color) => {
     const newColors = [...selectedColors];
     newColors[index] = color;
@@ -67,7 +66,7 @@ export default function Header() {
                   <label className="text-[14px] text-[rgb(170,170,170)]">Pomodoro</label>
                   <input
                     type="number"
-                    defaultValue={pomodoroTimeNew || 25}
+                    defaultValue={pomodoroTimeNew}
                     onChange={(e) => setPomodoroTime(e.target.value)}
                     className="w-25 text-[rgb(85,85,85)] bg-[rgb(239,239,239)] p-[10px] rounded-md text-start focus:outline-none"
                   />
@@ -76,7 +75,7 @@ export default function Header() {
                   <label className="text-[14px] text-[rgb(170,170,170)]">Short Break</label>
                   <input
                     type="number"
-                    defaultValue={shortBreakNew || 5}
+                    defaultValue={shortBreakNew}
                     onChange={(e) => setShortBreak(e.target.value)}
                     className="w-25 text-[rgb(85,85,85)] bg-[rgb(239,239,239)] p-[10px] rounded-md text-start focus:outline-none"
                   />
@@ -85,7 +84,7 @@ export default function Header() {
                   <label className="text-[14px] text-[rgb(170,170,170)]">Long Break</label>
                   <input
                     type="number"
-                    defaultValue={longBreakNew || 15}
+                    defaultValue={longBreakNew}
                     onChange={(e) => setLongBreak(e.target.value)}
                     className="w-25 text-[rgb(85,85,85)] bg-[rgb(239,239,239)] p-[10px] rounded-md text-start focus:outline-none"
                   />
